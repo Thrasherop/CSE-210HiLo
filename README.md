@@ -37,3 +37,4 @@ root                    (project root folder)
 ---
 * Joshua Kopaunik
 
+* Ethan McRae
