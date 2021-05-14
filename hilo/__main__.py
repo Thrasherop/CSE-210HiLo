@@ -1,4 +1,7 @@
-# TODO: Add entry point code here
+"""
+    This file acts as the entry point
+    into the high low game
+"""
 
 from game.director import Director
 

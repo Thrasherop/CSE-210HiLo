@@ -3,15 +3,27 @@ from game.dealer import Dealer
 
 class Director:
     
+    """
+        This class handles the flow
+        of the game, as well as managing
+        most functionality and input.
+    """
 
     def __init__(self):
-        
+        """
+            Constructs director object
+        """
         self.keep_playing = True
         self.score = 300
         self.dealer = Dealer()
 
     def start_game(self):
         
+        """
+            starts the game and has
+            the main loop
+        """
+
         self.count = 0
         while self.keep_playing:
             
@@ -26,6 +38,9 @@ class Director:
 
     def first_card(self):
         
+        """
+            At the beginnig, the director randomly chooses one from the deck
+        """
         if self.count == 0:
         
             
@@ -47,7 +62,12 @@ class Director:
                 card_name = 'A'
             card_name = self.current_suit + str(card_name)
             print(f"\nThe card is: {card_name}")
+            
+            # the director do not do it again
             self.count = 1
+        
+        
+        # The first card comes from the previous card
         else:
             first_card = self.second
             card_name = first_card
@@ -67,6 +87,7 @@ class Director:
             
         return first_card
 
+    # the director randomly picked the second card before the deal guess
     def second_card(self):
         i = random.randint(1,13)
         
@@ -78,7 +99,7 @@ class Director:
         return second_card
         
 
-    
+    # the director will know the comparison beforehand
     def compare(self, first, second):
         if first > second:
             self.comparison = "l"
@@ -87,11 +108,12 @@ class Director:
         return self.comparison
             
 
-    
+    # the director got the message from the dealer 
     def get_inputs(self):
         
         self.dealer.guess()
         
+    # gain 100 points if right, lose 75 if wrong
     def do_updates(self):
 
         if (self.dealer.play == self.comparison):
@@ -104,7 +126,7 @@ class Director:
         
     def do_outputs(self):
         
-
+        # the card will have the suit and number together
         card_name = self.second
 
         suits = ['♠', '♣', '♥', '♦']
@@ -125,17 +147,20 @@ class Director:
         print(f"Your score is: {self.score}")
         
         print("")
+        
+        # the director will ask the dealer if he wants to play again
         if self.dealer.want() and self.keep_playing:
             choice = input("Keep playing? [y/n] ")
             self.keep_playing = (choice == "y")
         else:
             self.keep_playing = False
 
+    # the dealer can keep playing if the score > 0
     def check_score(self):
 
         if self.score <= 0:
             self.keep_playing = False
 
-        #return True if self.score <= 0 else False
+        
 
     
