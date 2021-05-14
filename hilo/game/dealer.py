@@ -1,5 +1,5 @@
 import random
-from game import director
+
 
 
 # TODO: Define the Thrower class here.

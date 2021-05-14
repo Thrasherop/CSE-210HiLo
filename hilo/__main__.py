@@ -1,3 +1,6 @@
 # TODO: Add entry point code here
 
-print('hello world')
+from game.director import Director
+
+director = Director()
+director.start_game()
